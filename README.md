@@ -1,7 +1,7 @@
 # 📸 Project Screenshot
 
 <p align="center">
-  <img src="Screenshot 2026-02-17 230002.png" width="900"/>
+  <img src="C:\Users\tejas\Documents\ai_code_explainer\image.png" width="900"/>
 </p>
 
 # 🚀 AI Code Explainer
