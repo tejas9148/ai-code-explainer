@@ -1,8 +1,18 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import subprocess
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# ✅ Enable CORS (important for frontend)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class CodeRequest(BaseModel):
     code: str
@@ -12,7 +22,7 @@ class CodeRequest(BaseModel):
 def explain_code(request: CodeRequest):
 
     prompt = f"""
-Explain the following {request.language} code in simple terms:
+Explain the following {request.language} code clearly and simply:
 
 {request.code}
 """
@@ -24,6 +34,4 @@ Explain the following {request.language} code in simple terms:
         capture_output=True
     )
 
-    return {
-        "explanation": result.stdout.strip()
-    }
+    return {"explanation": result.stdout.strip()}
