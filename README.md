@@ -1,139 +1,260 @@
-# ai-code-explainer
-📌 PROJECT COMMANDS + REQUIREMENTS + WORKING SUMMARY
-🖥️ Commands to Run Project
-1️⃣ Activate virtual environment
-cd backend
-venv\Scripts\activate
+# 📸 Project Screenshot
 
-2️⃣ Start backend server
-python -m uvicorn main:app
+<p align="center">
+  <img src="Screenshot 2026-02-17 230002.png" width="900"/>
+</p>
+
+# 🚀 AI Code Explainer
+
+AI Code Explainer is a web-based application that explains programming code in simple and beginner-friendly terms using a Local Large Language Model (LLM).
+
+The system runs fully offline using Ollama and does not require OpenAI or any external API.
+
+---
+
+# 📌 Project Overview
+
+This project allows users to:
+
+- Paste source code (Python, Java, C++)
+- Select programming language
+- Get short AI-generated explanations
+- Run completely locally using a local LLM
+
+Tech Stack:
+
+Frontend  → React.js  
+Backend   → FastAPI  
+AI Model  → Ollama (TinyLlama / Phi3 Mini)  
+
+---
+
+# 🏗️ Architecture
+
+User (React UI)
+        ↓
+FastAPI Backend
+        ↓
+Ollama Local Model
+        ↓
+Generated Explanation
+        ↓
+Displayed on Frontend
+
+---
+
+# 🛠️ Technologies Used
+
+Frontend:
+- React.js
+- Axios
+- CSS
+
+Backend:
+- Python 3.10+
+- FastAPI
+- Uvicorn
+- Requests
+
+AI:
+- Ollama
+- TinyLlama / Phi3 Mini
+
+Version Control:
+- Git
+- GitHub
+
+---
+
+## 📂 Project Structure
+
+```
+ai_code_explainer/
+│
+├── backend/
+│   ├── main.py
+│   ├── venv/
+│   └── requirements.txt
+│
+├── frontend/
+│   └── frontend/
+│       ├── src/
+│       ├── public/
+│       └── package.json
+│
+├── .gitignore
+└── README.md
+```
 
 
-Server runs at:
+# ⚙️ Installation Guide
 
-http://127.0.0.1:8000
+Follow these steps to run the project locally.
 
-3️⃣ Open frontend
+---
 
-Open file:
-
-frontend/index.html
-
-
-(Double click or open in browser)
-
-4️⃣ Run AI model (if not running automatically)
-ollama run deepseek-coder:6.7b
-
-📦 Requirements / Installations Needed
-🟢 Software Required
-
-Install these once:
-
-✔ Python
+## 1️⃣ Install Python
 
 Download:
-https://python.org
+https://www.python.org/downloads/
 
-✔ Ollama
+Check installation:
+python --version
+
+---
+
+## 2️⃣ Install Node.js
+
+Download:
+https://nodejs.org/
+
+Check installation:
+node -v  
+npm -v
+
+---
+
+## 3️⃣ Install Ollama
 
 Download:
 https://ollama.com
 
-✔ Model Download
+Verify:
+ollama --version
 
-Run once:
+---
 
-ollama pull deepseek-coder:6.7b
+## 4️⃣ Download AI Model
 
-🟢 Python Libraries Required
+Recommended for 8GB RAM:
 
-Install inside backend folder:
+ollama pull tinyllama
 
-pip install fastapi uvicorn pydantic
+OR
 
-📂 Project Folder Structure
-ai-code-explainer
-│
-├── backend
-│     └── main.py
-│
-├── frontend
-│     └── index.html
-│
-└── venv
+ollama pull phi3:mini
 
-⚙️ How Project Works (Overall Flow)
-Step-by-Step Execution
+Check installed models:
+ollama list
 
-User enters code in frontend UI.
+---
 
-Frontend sends POST request to backend.
+# 🔧 Backend Setup
 
-Backend receives code input.
+Navigate to backend folder:
 
-Backend sends prompt to AI model (DeepSeek-Coder via Ollama).
+cd backend
 
-Model analyzes code logic.
+Create virtual environment:
 
-Model generates explanation.
+python -m venv venv
 
-Backend returns explanation.
+Activate (Windows):
 
-Frontend displays explanation to user.
+venv\Scripts\activate
 
-Architecture Diagram (Text)
-User
- ↓
-Frontend (HTML UI)
- ↓
-FastAPI Backend
- ↓
-Ollama Engine
- ↓
-DeepSeek-Coder Model
- ↓
-Explanation Response
- ↓
-Frontend Display
+Install dependencies:
 
-🧠 Technology Stack Used
-Component	Technology
-Frontend	HTML, CSS, JavaScript
-Backend	FastAPI (Python)
-AI Model	DeepSeek-Coder
-AI Runtime	Ollama
-API Communication	REST API
-🎯 Project Objective
+pip install fastapi uvicorn requests
 
-To build an AI system that automatically explains programming code in simple language using a locally hosted large language model.
+(Optional) Generate requirements file:
 
-⭐ Key Features
+pip freeze > requirements.txt
 
-Explains code logic
+Run backend:
 
-Works offline
+python -m uvicorn main:app --reload
 
-Supports multiple languages
+Backend runs at:
 
-No API cost
+http://127.0.0.1:8000
 
-Fast response
+API Docs:
 
-User-friendly interface
+http://127.0.0.1:8000/docs
 
-Runs locally
+---
 
-🔐 Advantages
+# 🎨 Frontend Setup
 
-No internet dependency
+Navigate to frontend folder:
 
-Secure local execution
+cd frontend/frontend
 
-Free to use
+Install dependencies:
 
-Customizable
+npm install
 
-Lightweight frontend
+Start React server:
 
-Real AI reasoning
+npm start
+
+Frontend runs at:
+
+http://localhost:3000
+
+---
+
+# 🚀 Run Full Project
+
+Open two terminals:
+
+Terminal 1 (Backend):
+
+cd backend  
+venv\Scripts\activate  
+python -m uvicorn main:app --reload  
+
+Terminal 2 (Frontend):
+
+cd frontend/frontend  
+npm start  
+
+Make sure Ollama is installed and model is downloaded.
+
+---
+
+# 📌 How It Works
+
+1. User enters code in React UI.
+2. React sends POST request to FastAPI.
+3. FastAPI creates prompt and sends it to Ollama.
+4. Ollama generates explanation.
+5. FastAPI returns explanation.
+6. React displays output.
+
+---
+
+# 🧠 Prompt Design
+
+Backend creates prompt like:
+
+"Explain this code briefly in 3-4 lines..."
+
+This ensures short and simple output.
+
+---
+
+# 📊 Features
+
+- Short code explanations
+- Clean dark UI
+- Offline AI
+- No API key required
+- Beginner-friendly design
+- Modern full-stack architecture
+
+---
+
+# ⚠️ System Requirements
+
+Minimum:
+- 8GB RAM
+- Python 3.10+
+- Node.js
+- Ollama installed
+
+Note:
+First response may be slow due to model loading.
+
+---
